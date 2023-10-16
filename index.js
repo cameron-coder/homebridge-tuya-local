@@ -225,7 +225,7 @@ class TuyaLan {
         }
 
         // Check if IP of accessory changed ( due to accessory reboots or power outage )
-        if (accessory && accessory.ip !== deviceConfig.ip) {
+        if (accessory && String(accessory.ip) !== String(deviceConfig.ip)) {
             this.log.info("Accessory IP changed from %s to %s", String(accessory.ip), String(deviceConfig.ip));
         }
 
