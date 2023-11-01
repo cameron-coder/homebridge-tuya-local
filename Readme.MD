@@ -61,14 +61,14 @@ Search for "Tuya" in [homebridge-config-ui-x](https://github.com/oznu/homebridge
 #### Option 2: Manually Install:
 
 ```
-sudo npm install -g homebridge-tuya
+sudo npm install -g homebridge-tuya-local
 ```
 
 ## Configuration
 > UI
 
 1. Navigate to the Plugins page in [homebridge-config-ui-x](https://github.com/oznu/homebridge-config-ui-x).
-2. Click the **Settings** button for the Tuya plugin.
+2. Click the **Settings** button for the Homebridge Tuya Local plugin.
 3. Add your device types
 4. Add device parameters<sup>[10](apple.com/)</sup>
 5. Restart Homebridge for the changes to take effect.
