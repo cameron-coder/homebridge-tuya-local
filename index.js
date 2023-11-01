@@ -123,6 +123,19 @@ class TuyaLan {
                     connect: false
                 });
                 this.addAccessory(device);
+            })
+            .on('update', config => {
+                // IP of device was changed. Update config.
+                if (devices[config.id] && devices[config.id].ip !== config.ip) {
+                    this.log.info('Device %s (%s) moved from %s to %s.', devices[config.id].name, config.id, devices[config.id].ip, config.ip);
+                    const device = new TuyaAccessory({
+                        ...devices[config.id], ...config,
+                        log: this.log,
+                        UUID: UUID.generate(PLUGIN_NAME + ':' + config.id),
+                        connect: false
+                    });
+                    this.addAccessory(device);
+                }
             });
 
         fakeDevices.forEach(config => {
