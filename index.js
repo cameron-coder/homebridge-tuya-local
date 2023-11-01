@@ -125,6 +125,9 @@ class TuyaLan {
                 this.addAccessory(device);
             })
             .on('update', config => {
+                if (!config || !config.id) return;
+                if (!devices[config.id]) return this.log.warn('Trying to update IP of a device that has not been configured yet (%s@%s).', config.id, config.ip);
+
                 // IP of device was changed. Update config.
                 if (devices[config.id] && devices[config.id].ip !== config.ip) {
                     this.log.info('Device %s (%s) moved from %s to %s.', devices[config.id].name, config.id, devices[config.id].ip, config.ip);
