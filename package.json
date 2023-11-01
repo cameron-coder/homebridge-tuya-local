@@ -35,7 +35,9 @@
   "keywords": [
     "homebridge-plugin",
     "homebridge",
-    "homebridge-tuya",
+    "local",
+    "control",
+    "homebridge-tuya-local",
     "tuya"
   ],
   "engines": {
