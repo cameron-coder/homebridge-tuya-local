@@ -1,11 +1,11 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/iRayanKhan/homebridge-tuya/main/assets/Tuya-Plugin-Branding.png" height="100"><br>
+    <img src="https://raw.githubusercontent.com/ayushsharma82/homebridge-tuya-local/main/assets/Tuya-Plugin-Branding.png" height="100"><br>
 </p>
 
 
 <span align="center">
 
-# Homebridge-Tuya
+# Homebridge-Tuya-Local
 
 [![npm](https://img.shields.io/npm/v/homebridge-tuya.svg)](https://www.npmjs.com/package/homebridge-tuya)
 [![npm](https://img.shields.io/npm/dt/homebridge-tuya.svg)](https://www.npmjs.com/package/homebridge-tuya)
@@ -15,8 +15,10 @@
 </span>
 
 
+> Note: This is a fork of iRayanKhan's `homebridge-tuya` with bug fix related to new local keys and small improvements.
 
-Control your supported Tuya accessories locally in HomeKit
+
+Control your supported Tuya accessories locally in HomeKit using Homebridge!
 
 * [Supported Device Types](#supported-device-types)
 * [Installation Instructions](#installation-instructions)
