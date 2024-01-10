@@ -411,6 +411,13 @@
                   "functionBody": "return model.devices && model.devices[arrayIndices] && ['Fan','FanLight'].includes(model.devices[arrayIndices].type);"
                 }
               },
+              "dpRotationDirection": {
+                "type": "integer",
+                "placeholder": "-1",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['FanLight'].includes(model.devices[arrayIndices].type);"
+                }
+              },
               "dpChildLock": {
                 "type": "integer",
                 "placeholder": "6",
