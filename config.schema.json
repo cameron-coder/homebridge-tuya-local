@@ -2,7 +2,7 @@
     "pluginAlias": "TuyaLan",
     "pluginType": "platform",
     "singular": true,
-    "headerDisplay": "<p align='center'><img height='60px' src='https://user-images.githubusercontent.com/3979615/78354049-dc7ff780-75f6-11ea-8026-2f8bf81d8331.png'></p>\n\nBefore using the Tuya plugin you need to discover your devices by following [these instructions](https://github.com/AMoo-Miki/homebridge-tuya-lan/wiki/Setup-Instructions).\n\n",
+    "headerDisplay": "<p align='center'><img height='60px' src='https://user-images.githubusercontent.com/3979615/78354049-dc7ff780-75f6-11ea-8026-2f8bf81d8331.png'></p>\n\nBefore using the Tuya plugin you need to discover your devices by following [these instructions](https://github.com/AMoo-Miki/homebridge-tuya-lan/wiki/Setup-Instructions).\nAlternatively install and run [tuya-cli wizard](https://github.com/TuyaAPI/cli)\n\n",
     "footerDisplay": "",
     "schema": {
       "type": "object",
@@ -113,6 +113,18 @@
                     "enum": [
                       "RGBTWOutlet"
                     ]
+                  },
+                  {
+                    "title": "Fan",
+                    "enum": [
+                      "Fan"
+                    ]
+                  },
+                  {
+                    "title": "Fan with Light",
+                    "enum": [
+                      "FanLight"
+                    ]
                   }
                 ]
               },
@@ -204,11 +216,24 @@
                   "functionBody": "return model.devices && model.devices[arrayIndices] && ['Outlet', 'TWLight', 'RGBTWLight', 'SimpleDimmer','RGBTWOutlet'].includes(model.devices[arrayIndices].type);"
                 }
               },
+              "dpLight": {
+                "type": "integer",
+                "placeholder": 1,
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['RGBTWOutlet','FanLight'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "useBrightness": {
+                "type": "boolean",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['FanLight'].includes(model.devices[arrayIndices].type);"
+                }
+              },
               "dpBrightness": {
                 "type": "integer",
                 "placeholder": "2",
                 "condition": {
-                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['TWLight', 'RGBTWLight', 'SimpleDimmer','RGBTWOutlet'].includes(model.devices[arrayIndices].type);"
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['TWLight', 'RGBTWLight', 'SimpleDimmer','RGBTWOutlet','FanLight'].includes(model.devices[arrayIndices].type);"
                 }
               },
               "dpColorTemperature": {
@@ -252,11 +277,18 @@
                   "functionBody": "return model.devices && model.devices[arrayIndices] && ['RGBTWLight','RGBTWOutlet'].includes(model.devices[arrayIndices].type);"
                 }
               },
+              "minBrightness": {
+                "type": "integer",
+                "placeholder": "1",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['FanLight'].includes(model.devices[arrayIndices].type);"
+                }
+              },
               "scaleBrightness": {
                 "type": "integer",
                 "placeholder": "255",
                 "condition": {
-                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['RGBTWLight','RGBTWOutlet'].includes(model.devices[arrayIndices].type);"
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['RGBTWLight','RGBTWOutlet','FanLight'].includes(model.devices[arrayIndices].type);"
                 }
               },
               "scaleWhiteColor": {
@@ -348,7 +380,7 @@
                 "type": "integer",
                 "placeholder": "7",
                 "condition": {
-                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['Convector', 'SimpleHeater'].includes(model.devices[arrayIndices].type);"
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['Convector', 'SimpleHeater','Fan','FanLight'].includes(model.devices[arrayIndices].type);"
                 }
               },
               "dpDesiredTemperature": {
@@ -369,7 +401,21 @@
                 "type": "integer",
                 "placeholder": "4",
                 "condition": {
-                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['Convector'].includes(model.devices[arrayIndices].type);"
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['Convector', 'Fan','FanLight'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "maxSpeed": {
+                "type": "integer",
+                "placeholder": "4",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['Fan','FanLight'].includes(model.devices[arrayIndices].type);"
+                }
+              },
+              "dpRotationDirection": {
+                "type": "integer",
+                "placeholder": "-1",
+                "condition": {
+                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['FanLight'].includes(model.devices[arrayIndices].type);"
                 }
               },
               "dpChildLock": {
@@ -465,13 +511,6 @@
                 "placeholder": "0",
                 "condition": {
                   "functionBody": "return model.devices && model.devices[arrayIndices] && ['SimpleBlinds'].includes(model.devices[arrayIndices].type);"
-                }
-              },
-              "dpLight": {
-                "type": "integer",
-                "placeholder": 1,
-                "condition": {
-                  "functionBody": "return model.devices && model.devices[arrayIndices] && ['RGBTWOutlet'].includes(model.devices[arrayIndices].type);"
                 }
               }
             }
